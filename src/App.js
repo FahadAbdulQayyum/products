@@ -4,9 +4,9 @@ import Api from './components/api'
 const App = () => {
 
   return (
-    <>
+    <div>
       <Api />
-    </>
+    </div>
   )
 }
 
