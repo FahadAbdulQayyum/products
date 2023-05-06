@@ -80,6 +80,11 @@
   margin: 10px 0 0 0;
 }
 
+.main .btn.sub:hover,
+.main .btn:hover{
+  cursor: pointer;
+}
+
 .main .btn.sub:active,
 .main .btn:active{
   transform: scale(1.1);
