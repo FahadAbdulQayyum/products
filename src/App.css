@@ -114,3 +114,34 @@
   border: 0;
   border-radius: 5px;
 }
+
+@media screen and (max-width: 992px) {
+  .divMain{
+    margin: 50px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .main .input{
+    margin-top: 50px;
+    width: 300px;
+    padding: 10px;
+    border-radius: 10px;
+    outline: none;
+    border: 0;
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.2);
+  }
+
+  .div{
+    padding: 5px 20px;
+    background-color: aliceblue;
+    margin: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+  }
+}
