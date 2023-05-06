@@ -126,7 +126,7 @@ const Api = () => {
                 }
             </div>
             <div className="pagi">
-                {prev && <button onClick={() => (init = 0, onChange(init, limit), page > 1 ? setPage(page - 1) : null, console.log('prev', init, limit))}>Prev</button>}
+                {(search && prev) && <button onClick={() => (init = 0, onChange(init, limit), page > 1 ? setPage(page - 1) : null, console.log('prev', init, limit))}>Prev</button>}
                 {search && <button onClick={() => (init = limit, onChange(init, limit + 5), page < (searchArr.length / 5) ? setPage(page + 1) : null, setPrev(true))}>Next</button>}
             </div>
             <p>{search && page + '/' + (Math.ceil(searchArr.length / 5))}</p>
