@@ -14,8 +14,10 @@ const Api = () => {
     const [search, setSearch] = useState(false)
     const [filter, setFilter] = useState(false)
     const [sort, setSort] = useState(false)
+    const [filterByNameBool, setFilterByNameBool] = useState(false)
     const [limit, setLimit] = useState(5)
     const [page, setPage] = useState(1)
+    const [filterByName, setFilterByName] = useState()
 
     useEffect(() => {
         axios.get(`https://dummyjson.com/products`)
@@ -37,8 +39,18 @@ const Api = () => {
             })
     }
 
-    const setFilterByNameFunc = () => { }
-    const setFilterByPriceFunc = () => { }
+    const setFilterByNameFunc = () => {
+        let temp = [...pro].filter(v => v.category === filterByName)
+        console.log('setFilterByName', filterByName);
+        console.log('pro filter', pro, temp);
+        setPro(temp)
+    }
+    const setFilterByPriceFunc = () => {
+        let temp = [...pro].filter(v => v.price < +filterByName)
+        console.log('setFilterByName', filterByName);
+        console.log('pro filter', pro, temp);
+        setPro(temp)
+    }
 
     const setSortByNameFunc = () => {
         document.getElementById('inp').value = ''
@@ -67,7 +79,7 @@ const Api = () => {
                 onClick={onChange}
             />
             {!filter ?
-                <input type="submit" value={'Filter'} className='btn' onClick={() => setFilter(true)} />
+                <input type="submit" value={'Filter'} className='btn' onClick={() => (setFilter(true), setFilterByNameBool(true))} />
                 :
                 <div style={{
                     display: 'flex',
@@ -75,6 +87,7 @@ const Api = () => {
                     alignItems: 'center'
                 }}>
                     <p>Filter via</p>&nbsp;
+                    {filterByNameBool && <input placeholder='Enter the name/price range' onChange={e => setFilterByName(e?.target?.value)} />}
                     <input type="submit" value={'Name'} className='btn sub' onClick={(e) => setFilterByNameFunc(e)} />
                     <input type="submit" value={'Price'} className='btn sub' onClick={(e) => setFilterByPriceFunc(e)} />
                 </div>
@@ -98,6 +111,14 @@ const Api = () => {
                         pro.map((v, i) => {
                             return (
                                 <div key={i} className='div'>
+                                    <p className='perc'>
+                                        <p>
+                                            {v.discountPercentage + '%'}
+                                        </p>
+                                        <p>
+                                            OFF
+                                        </p>
+                                    </p>
                                     <div className='divimg'>
                                         <img src={v.thumbnail} className='img' />
                                     </div>
